@@ -83,7 +83,7 @@ int main()
 					json msgJson;
 					msgJson["steering_angle"] = steer_value;
 					msgJson["throttle"] = throttle_value; // 0.3;
-					//msgJson["throttle"] = (1 - std::abs(steer_value)) * 0.5 + 0.2;
+					//msgJson["throttle"] = (1 - std::abs(steer_value)) * 0.45 + 0.25;
 					auto msg = "42[\"steer\"," + msgJson.dump() + "]";
 					std::cout << msg << std::endl;
 					ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
