@@ -1,5 +1,7 @@
 #ifndef PID_H
 #define PID_H
+#include <vector>
+
 
 class PID {
 public:
@@ -16,6 +18,17 @@ public:
   double Kp;
   double Ki;
   double Kd;
+
+  /*
+  * Twiddle Parameters
+  */
+  std::vector<double> p;
+  std::vector<double> dp;
+  bool isTwiddle, isAdd, isSub;
+  int step, p_index;
+  int settling_steps, eval_steps;
+  double err, best_error, thresh, dp_sum;
+
 
   /*
   * Constructor
@@ -41,6 +54,11 @@ public:
   * Calculate the total PID error.
   */
   double TotalError();
+
+  /*
+  * Add dp to PID parameters
+  */
+  void Add_dp(int index, double value);
 };
 
 #endif /* PID_H */
